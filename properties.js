@@ -1,6 +1,7 @@
 let globalProperties = {
     width: 800,
     height: 400,
+    yoff: 0
 }
 
 let ground = {
@@ -21,17 +22,21 @@ let player = {
     move: () => {
         if (keyCode == 68) {
             if (player.x >= globalProperties.width-200) {
-                screen.x += 0.005*player.speed
+                screen.x += 0.005 * player.speed
             } else {
                 player.x += player.speed
             }
         }
         if (keyCode == 65) {
             if (player.x <= 200) {
-                screen.x -= 0.005*player.speed
+                screen.x -= 0.005 * player.speed
             } else {
                 player.x -= player.speed
             }
         }
+    },
+
+    ground: () => {
+        player.y = globalProperties.height - noise(player.x / 200 + screen.x, globalProperties.yoff) * 200 - 20
     }
 }

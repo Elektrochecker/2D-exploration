@@ -5,11 +5,13 @@ function setup() {
 function draw() {
   background(220)
   drawPlayer()
-  drawGround(screen.x)
+  drawGround(screen.x, globalProperties.yoff)
+  globalProperties.yoff += 0.0005
 
   if (keyIsPressed) {
     player.move()
   }
+  player.ground()
 }
 
 let drawGround = (xoff, yoff = 0) => {
@@ -30,5 +32,5 @@ let drawGround = (xoff, yoff = 0) => {
 let drawPlayer = () => {
   noStroke()
   fill(player.color)
-  rect(player.x, player.y, 10, 20)
+  rect(player.x, player.y, 10, -20)
 }
